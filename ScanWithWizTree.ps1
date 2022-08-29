@@ -1,3 +1,4 @@
+
 ##current ninjascript
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -ErrorVariable admin
 
@@ -11,13 +12,13 @@ if ($myInvocation.Line) {
 exit $lastexitcode
 }
 
-$FileOut = "$env:homedrive\tmp\Scans$(Get-Date -Format 'MM_dd_yyyy').csv"
+$FileOut = "$env:temp\Scans$(Get-Date -Format 'MM_dd_yyyy').csv"
 Set-Content "$FileOut" -Value "WizTreeScans" -Encoding UTF8
 
-$wizPath = "$env:homedrive\Program Files\WizTree\WizTree64.exe"
+$wizPath = "$env:programfiles\WizTree\WizTree64.exe"
 $File4 = "$(Get-Date -Format 'MM_dd_yyyy').csv"
 $File3 = "$i$File4"
-$File2 = "$env:homedrive\tmp"
+$File2 = "$env:temp"
 $File1 = "$File2\$File3"
 
 Get-wmiobject win32_volume | select-object name -expandproperty name | where-object -filterscript {$_.name -like "*:\*"} -outvariable Drives | Out-Null
